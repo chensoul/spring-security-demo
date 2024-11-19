@@ -1,7 +1,5 @@
 package com.chensoul.web.controller;
 
-import com.chensoul.captcha.CaptchaServiceV3;
-import com.chensoul.captcha.ICaptchaService;
 import com.chensoul.persistence.model.User;
 import com.chensoul.registration.OnRegistrationCompleteEvent;
 import com.chensoul.service.IUserService;
@@ -22,8 +20,6 @@ public class RegistrationCaptchaController {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     private final IUserService userService;
-    private final ICaptchaService captchaService;
-    private final ICaptchaService captchaServiceV3;
     private final ApplicationEventPublisher eventPublisher;
 
     // Registration
@@ -31,21 +27,11 @@ public class RegistrationCaptchaController {
     public GenericResponse captchaRegisterUserAccount(@Valid final UserDto accountDto, final HttpServletRequest request) {
 
         final String response = request.getParameter("g-recaptcha-response");
-        captchaService.processResponse(response);
+//        captchaService.processResponse(response);
 
         return registerNewUserHandler(accountDto, request);
     }
 
-
-    // Registration reCaptchaV3
-    @PostMapping("/user/registrationCaptchaV3")
-    public GenericResponse captchaV3RegisterUserAccount(@Valid final UserDto accountDto, final HttpServletRequest request) {
-
-        final String response = request.getParameter("response");
-        captchaServiceV3.processResponse(response, CaptchaServiceV3.REGISTER_ACTION);
-
-        return registerNewUserHandler(accountDto, request);
-    }
 
     private GenericResponse registerNewUserHandler(final UserDto accountDto, final HttpServletRequest request) {
         LOGGER.debug("Registering user account with information: {}", accountDto);

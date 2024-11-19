@@ -9,8 +9,7 @@ import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-@ComponentScan(basePackages = {"com.chensoul.captcha"})
-public class CaptchaConfig {
+public class RestTemplateConfig {
     @Bean
     public ClientHttpRequestFactory clientHttpRequestFactory() {
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();

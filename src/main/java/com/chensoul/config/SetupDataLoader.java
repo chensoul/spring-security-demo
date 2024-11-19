@@ -28,8 +28,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     private final PrivilegeRepository privilegeRepository;
     private final PasswordEncoder passwordEncoder;
 
-    // API
-
     @Override
     @Transactional
     public void onApplicationEvent(final ContextRefreshedEvent event) {

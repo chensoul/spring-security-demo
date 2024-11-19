@@ -3,7 +3,6 @@ package com.chensoul.service;
 import com.chensoul.persistence.dao.DeviceMetadataRepository;
 import com.chensoul.persistence.model.DeviceMetadata;
 import com.chensoul.persistence.model.User;
-import com.google.common.base.Strings;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
@@ -22,6 +21,7 @@ import org.springframework.context.NoSuchMessageException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import ua_parser.Client;
 import ua_parser.Parser;
 
@@ -109,7 +109,7 @@ public class DeviceService {
         CityResponse cityResponse = databaseReader.city(ipAddress);
         if (Objects.nonNull(cityResponse) &&
                 Objects.nonNull(cityResponse.getCity()) &&
-                !Strings.isNullOrEmpty(cityResponse.getCity().getName())) {
+                !StringUtils.isEmpty(cityResponse.getCity().getName())) {
 
             location = cityResponse.getCity().getName();
         }

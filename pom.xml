@@ -17,7 +17,6 @@
     <properties>
         <java-version>17</java-version>
 
-        <guava.version>32.0.0-jre</guava.version>
         <passay.version>1.6.6</passay.version>
         <aerogear.version>1.0.0</aerogear.version>
         <uap-java.version>1.6.1</uap-java.version>
@@ -82,9 +81,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
         </dependency>
 
         <!-- User Agent parser -->
@@ -146,55 +144,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/*IntegrationTest.java</exclude>
-                        <exclude>**/*LiveTest.java</exclude>
-                    </excludes>
-                    <systemPropertyVariables>
-                        <!-- <provPersistenceTarget>h2</provPersistenceTarget> -->
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>integration</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <configuration>
-                                    <excludes>
-                                        <exclude>**/*LiveTest.java</exclude>
-                                    </excludes>
-                                    <includes>
-                                        <include>**/*IntegrationTest.java</include>
-                                    </includes>
-                                </configuration>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <test.mime>json</test.mime>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

@@ -20,7 +20,7 @@
         <passay.version>1.6.6</passay.version>
         <aerogear.version>1.0.0</aerogear.version>
         <uap-java.version>1.6.1</uap-java.version>
-        <geoip2.version>2.15.0</geoip2.version>
+        <geoip2.version>4.2.1</geoip2.version>
     </properties>
 
     <dependencies>
